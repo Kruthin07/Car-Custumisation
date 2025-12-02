@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3d-Car Customizer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <!-- Sketchfab Viewer API -->
+  <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
+</head>
+<body>
+  <header>
+    <div class="wrap"><h1>3d-Car Customizer</h1></div>
+  </header>
+
+  <main class="wrap">
+    <!-- PAGE 1 -->
+    <section id="page1" class="page active card">
+      <h2>Welcome</h2>
+      <p>Start customizing cars in 3D. Smooth animations tuned to feel ultra-fluid.</p>
+      <button class="btn" onclick="goTo(2)">Start Customizing</button>
+    </section>
+
+    <!-- PAGE 2: 3D + basic config -->
+    <section id="page2" class="page card" aria-live="polite">
+      <h2>Car Customizer (3D Model)</h2>
+
+      <!-- Viewer container: model-viewer for most models, Sketchfab for Hyundai models -->
+      <div id="viewerContainer">
+        <model-viewer id="carViewer"
+          src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Buggy/glTF-Binary/Buggy.glb"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          xr-environment
+          camera-controls
+          auto-rotate
+          auto-rotate-delay="0"
+          exposure="1"
+          style="width:100%;height:480px;border-radius:12px;background:linear-gradient(180deg,#071023,#0b1226);">
+        </model-viewer>
+
+        <!-- Single API-driven Sketchfab iframe -->
+        <div id="sketchfabWrap" class="sketchfab-embed-wrapper" style="display:none">
+          <iframe
+            id="skfb-frame"
+            src=""
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="card">
+          <label for="modelSelect">Model</label>
+          <select id="modelSelect">
+            <!-- Hyundai -->
+            <optgroup label="Hyundai">
+              <option value="creta">Hyundai Creta</option>
+              <option value="i20">Hyundai i20</option>
+              <option value="verna">Hyundai Verna</option>
+              <option value="venue">Hyundai Venue</option>
+              <option value="tucson">Hyundai Tucson (SUV)</option>
+              <option value="alcazar">Hyundai Alcazar (SUV)</option>
+              <option value="kona">Hyundai Kona (SUV)</option>
+              <option value="elantra">Hyundai Elantra</option>
+              <option value="aura">Hyundai Aura</option>
+              <option value="santro">Hyundai Santro</option>
+            </optgroup>
+
+            <!-- Maruti Suzuki -->
+            <optgroup label="Maruti Suzuki">
+              <option value="swift">Maruti Swift</option>
+              <option value="baleno">Maruti Baleno</option>
+              <option value="ciaz">Maruti Ciaz</option>
+              <option value="brezza">Maruti Brezza</option>
+            </optgroup>
+
+            <!-- Toyota -->
+            <optgroup label="Toyota">
+              <option value="innova">Toyota Innova Crysta</option>
+              <option value="fortuner">Toyota Fortuner</option>
+            </optgroup>
+
+            <!-- Audi -->
+            <optgroup label="Audi">
+              <option value="audi_a4">Audi A4</option>
+              <option value="audi_q7">Audi Q7</option>
+            </optgroup>
+
+            <!-- Mercedes-Benz -->
+            <optgroup label="Mercedes-Benz">
+              <option value="merc_cclass">Mercedes C-Class</option>
+              <option value="merc_gla">Mercedes GLA</option>
+            </optgroup>
+
+            <!-- Tesla -->
+            <optgroup label="Tesla">
+              <option value="tesla_model3">Tesla Model 3</option>
+              <option value="tesla_modelx">Tesla Model X</option>
+            </optgroup>
+          </select>
+
+          <div style="margin-top:12px">
+            <label for="wheelSelect">Wheels</label>
+            <select id="wheelSelect">
+              <option value="standard" data-extra="0">Standard</option>
+              <option value="sport" data-extra="50000">Sport (+₹50,000)</option>
+            </select>
+          </div>
+
+          <div style="margin-top:12px">
+            <label>Color (click a swatch)</label>
+            <div class="swatches" id="colorSwatches">
+              <button class="swatch" data-color="White" title="White" aria-label="White" style="background:#ffffff"></button>
+              <button class="swatch" data-color="Black" title="Black" aria-label="Black" style="background:#0b0b0b"></button>
+              <button class="swatch" data-color="Red" title="Red" aria-label="Red" style="background:#d32f2f"></button>
+              <button class="swatch" data-color="Blue" title="Blue" aria-label="Blue" style="background:#1976d2"></button>
+              <button class="swatch" data-color="Silver" title="Silver" aria-label="Silver" style="background:#bdbdbd"></button>
+            </div>
+            <div style="margin-top:8px;display:flex;align-items:center;gap:8px">
+              <div style="font-size:13px;color:var(--muted)">Selected:</div>
+              <div id="selectedColor" class="color-selected"></div>
+              <div id="selectedColorName" style="color:var(--muted)"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <label>Finish</label>
+            <select id="finishSelect">
+              <option value="shiny" data-extra="0">Shiny</option>
+              <option value="matte" data-extra="20000">Matte (+₹20,000)</option>
+            </select>
+          </div>
+
+          <div style="margin-top:12px">
+            <label>Speaker System</label>
+            <select id="speakerSelect">
+              <option value="standard" data-extra="0">Standard (4 speakers)</option>
+              <option value="6sp" data-extra="20000">6 Speakers (+₹20,000)</option>
+              <option value="8sp_sub" data-extra="40000">8 Speakers + Subwoofer (+₹40,000)</option>
+              <option value="premium_bose" data-extra="60000">Bose Premium (+₹60,000)</option>
+            </select>
+          </div>
+
+          <div style="margin-top:12px">
+            <label>Gearbox</label>
+            <select id="gearboxSelect">
+              <option value="manual" data-extra="0">Manual</option>
+              <option value="auto" data-extra="80000">Automatic (+₹80,000)</option>
+              <option value="dct" data-extra="100000">DCT (+₹1,00,000)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <label>Quick Actions</label>
+          <div class="row" style="flex-wrap:wrap">
+            <button class="btn" id="resetCam">Reset Camera</button>
+            <button class="btn" id="snap">Screenshot</button>
+          </div>
+
+          <div style="margin-top:12px">
+            <label>Model Variants (if available)</label>
+            <select id="variantSelect"><option value="">Default</option></select>
+          </div>
+
+          <div class="price-box" id="priceBox">Total Price: ₹ <span id="priceValue">0</span></div>
+
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn" onclick="goTo(3)">Next: Components</button>
+            <button class="btn" onclick="goTo(1)">Back Home</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Components -->
+    <section id="page3" class="page card">
+      <h2>Components Customizer</h2>
+      <p>Pick engine / battery, interior, suspension and brakes. Assets are placeholders — replace with your licensed models.</p>
+
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card">
+          <label>Engine / Battery</label>
+          <select id="engineSelect" style="color: black"></select>
+
+          <!-- 3D engine/battery viewer -->
+          <div id="engine3dWrap" class="engine-3d-wrapper">
+            <iframe
+              id="engine3dFrame"
+              title="Engine / Battery 3D"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="">
+            </iframe>
+          </div>
+
+          <!-- fallback image (currently hidden) -->
+          <img id="engineImg" src="https://source.unsplash.com/600x360/?car-engine" alt="engine" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
+        </div>
+        <div class="card">
+          <label>Interior</label>
+          <select id="interiorSelect">
+            <option value="Standard" data-extra="0">Standard</option>
+            <option value="Luxury" data-extra="80000">Luxury (+₹80,000)</option>
+            <option value="Sport" data-extra="100000">Sport (+₹1,00,000)</option>
+          </select>
+
+          <!-- 3D Interior viewer -->
+          <div id="interior3dWrap" class="engine-3d-wrapper">
+            <iframe
+              id="interior3dFrame"
+              title="Interior 3D"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="">
+            </iframe>
+          </div>
+
+          <img id="interiorImg" src="https://source.unsplash.com/600x360/?car-interior" alt="interior" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card">
+          <label>Suspension</label>
+          <select id="suspensionSelect">
+            <option value="Standard" data-extra="0">Standard</option>
+            <option value="Comfort" data-extra="40000">Comfort (+₹40,000)</option>
+            <option value="Sport" data-extra="70000">Sport (+₹70,000)</option>
+          </select>
+
+          <!-- 3D Suspension viewer -->
+          <div id="suspension3dWrap" class="engine-3d-wrapper">
+            <iframe
+              id="suspension3dFrame"
+              title="Suspension 3D"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="">
+            </iframe>
+          </div>
+
+          <img id="suspensionImg" src="https://source.unsplash.com/600x360/?car-suspension" alt="suspension" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
+        </div>
+        <div class="card">
+          <label>Brakes</label>
+          <select id="brakesSelect">
+            <option value="Standard" data-extra="0">Standard</option>
+            <option value="ABS" data-extra="35000">ABS (+₹35,000)</option>
+            <option value="Performance" data-extra="90000">Performance (+₹90,000)</option>
+          </select>
+
+          <!-- 3D Brakes viewer -->
+          <div id="brakes3dWrap" class="engine-3d-wrapper">
+            <iframe
+              id="brakes3dFrame"
+              title="Brakes 3D"
+              frameborder="0"
+              allowfullscreen
+              mozallowfullscreen="true"
+              webkitallowfullscreen="true"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              xr-spatial-tracking
+              execution-while-out-of-viewport
+              execution-while-not-rendered
+              web-share
+              src="">
+            </iframe>
+          </div>
+
+          <img id="brakesImg" src="https://source.unsplash.com/600x360/?car-brake" alt="brakes" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
+        </div>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:8px">
+        <button class="btn" onclick="goTo(4)">Next: Summary</button>
+        <button class="btn" onclick="goTo(2)">Back: Car</button>
+      </div>
+    </section>
+
+    <!-- PAGE 4 -->
+    <section id="page4" class="page card">
+      <h2>Summary</h2>
+      <div id="summaryBox" style="margin-top:12px"></div>
+      <div style="margin-top:14px;display:flex;gap:8px">
+        <button class="btn" onclick="goTo(5)">Proceed to Checkout</button>
+        <button class="btn" onclick="goTo(3)">Back: Components</button>
+      </div>
+    </section>
+
+    <!-- PAGE 5 -->
+    <section id="page5" class="page card">
+      <h2>Checkout</h2>
+      <div id="checkoutBox" style="margin-top:12px"></div>
+      <div style="margin-top:12px">
+        <button class="btn" id="confirmBtn">Confirm Order</button>
+        <button class="btn" onclick="goTo(4)">Back: Summary</button>
+      </div>
+    </section>
+
+    <footer>&copy;Kruthin GLBs and Sketchfab licensed assets for production use.</footer>
+  </main>
+
+  <div id="thankYou" class="thankyou" aria-hidden="true">
+    <div class="thankyou-card">
+      <div style="font-size:48px;color:#16a34a">✔️</div>
+      <h3>Thank you for your order!</h3>
+      <p style="color:rgba(11,18,38,.9);">Your customized car will be ready soon.</p>
+      <button class="btn" onclick="backToHome()">Back to Home</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
