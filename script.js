@@ -55,11 +55,11 @@ santro: 'd43347a799a84674a7d1543e60732298'
 // For now, all use the same UID; you can change each value later.pending...
 const ENGINE_3D_UIDS = {
 '1.0L': 'd440e8b6ec914b17b144a241ddbfa136',
-'1.2L': 'd440e8b6ec914b17b144a241ddbfa136',
-'1.5L': 'd440e8b6ec914b17b144a241ddbfa136',
-'2.0L': 'd440e8b6ec914b17b144a241ddbfa136',
-'2.5L': 'd440e8b6ec914b17b144a241ddbfa136',
-'3.0L': 'd440e8b6ec914b17b144a241ddbfa136'
+'1.2L': 'df15e62a4ab948b6bc60877e71293040',
+'1.5L': '39da7ae55dc141bca739239c4b59f1cf',
+'2.0L': 'ce3ec4ee591245b986cee99edf927663',
+'2.5L': 'bc71e9c4a44844b3b588cc35e59388fc',
+'3.0L': 'b0084dc234584300a9b5b1a335161415'
 };
 
 // ===== TESLA BATTERY 3D ASSETS (IDs kept separate per range) =====
@@ -78,16 +78,16 @@ const INTERIOR_3D_UIDS = {
 
 // pending suspension...
 const SUSPENSION_3D_UIDS = {
-'Standard': 'd440e8b6ec914b17b144a241ddbfa136',
-'Comfort':  'd440e8b6ec914b17b144a241ddbfa136',
-'Sport':    'd440e8b6ec914b17b144a241ddbfa136'
+'Standard': '108faf69976747c09a21968727a13255',
+'Comfort':  '80882d5984be45e49f4179ae8ce86599',
+'Sport':    '5cf0120b9bca4fd6a20c9357f7e5efaf'
 };
 
 // pending brakes...
 const BRAKES_3D_UIDS = {
-'Standard':    'd440e8b6ec914b17b144a241ddbfa136',
-'ABS':         'd440e8b6ec914b17b144a241ddbfa136',
-'Performance': 'd440e8b6ec914b17b144a241ddbfa136'
+'Standard':    '7c6e4d4b226040869e6c312b8bafe95d',
+'ABS':         '416dd1ebbcbe45f5a648b3e389eb7bb8',
+'Performance': 'a486158ad159436fbc4aaa4ad40dd224'
 };
 
 const state = { model:'creta', wheel:'standard', variant:null, finish:'shiny', color:'White', components:{}, price:0 };
