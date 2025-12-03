@@ -311,34 +311,50 @@ if(speakerSelect) speakerSelect.addEventListener('change', updatePrice);
 if(gearboxSelect) gearboxSelect.addEventListener('change', updatePrice);
 
 // screenshot handler for BOTH model-viewer and Sketchfab
-document.getElementById('snap').addEventListener('click', async ()=>{
-if (useSketchfabForCurrentModel()) {
-    if(!skfbApi){
-    alert('3D viewer is still loading. Please try again in a moment.');
-    return;
+document.getElementById('snap').addEventListener('click', async () => {
+  // Helper to trigger a download from a data URL
+  function downloadDataUrl(dataUrl, filename) {
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // --- Sketchfab screenshot ---
+  if (useSketchfabForCurrentModel()) {
+    if (!skfbApi) {
+      alert('3D viewer is still loading. Please try again in a moment.');
+      return;
     }
-    skfbApi.getScreenShot(function(err, result){
-    if(err || !result){
+
+    skfbApi.getScreenShot(function (err, result) {
+      if (err || !result) {
         alert('Screenshot failed.');
         return;
-    }
-    const w = window.open('');
-    w.document.write(`<img src="${result}" style="max-width:100%">`);
+      }
+
+      // result is a data URL (e.g. "data:image/png;base64,...")
+      downloadDataUrl(result, 'car-screenshot.png');
     });
-} else {
-    try{
-    if(typeof carViewer.toDataURL === 'function'){
-        const dataUrl = await carViewer.toDataURL();
-        const w = window.open('');
-        w.document.write(`<img src="${dataUrl}" style="max-width:100%">`);
-    }else{
-        alert('Screenshot not supported for this browser.');
+
+    return;
+  }
+
+  // --- <model-viewer> screenshot ---
+  try {
+    if (typeof carViewer.toDataURL === 'function') {
+      const dataUrl = await carViewer.toDataURL(); // "data:image/png;base64,..."
+      downloadDataUrl(dataUrl, 'car-screenshot.png');
+    } else {
+      alert('Screenshot not supported for this browser.');
     }
-    }catch(e){
-    alert('Screenshot failed: '+e.message);
-    }
-}
+  } catch (e) {
+    alert('Screenshot failed: ' + e.message);
+  }
 });
+
 
 document.getElementById('resetCam').addEventListener('click', ()=>{
 
