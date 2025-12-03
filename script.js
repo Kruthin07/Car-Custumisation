@@ -1,41 +1,41 @@
 // ===== CAR 3D ASSETS =====
 
 // model-viewer GLBs (used for non-Hyundai & as fallback)
-const MODEL_DB = {
-// Hyundai
-creta:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/ToyCar/glTF-Binary/ToyCar.glb',
-i20:    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb',
-verna:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb',
-venue:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb',
-tucson: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb',
-alcazar:'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/FlightHelmet/glTF-Binary/FlightHelmet.glb',
-kona:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb',
-elantra:'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb',
-aura:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/2CylinderEngine/glTF-Binary/2CylinderEngine.glb',
-santro: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF/CesiumMan.gltf',
+// const MODEL_DB = {
+// // Hyundai
+// creta:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/ToyCar/glTF-Binary/ToyCar.glb',
+// i20:    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Buggy/glTF-Binary/Buggy.glb',
+// verna:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb',
+// venue:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoomBox/glTF-Binary/BoomBox.glb',
+// tucson: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb',
+// alcazar:'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/FlightHelmet/glTF-Binary/FlightHelmet.glb',
+// kona:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb',
+// elantra:'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb',
+// aura:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/2CylinderEngine/glTF-Binary/2CylinderEngine.glb',
+// santro: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMan/glTF/CesiumMan.gltf',
 
-// Maruti Suzuki
-swift:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/VC/glTF-Binary/VC.glb',
-baleno: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Cube/glTF-Binary/Cube.glb',
-ciaz:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/WaterBottle/glTF-Binary/WaterBottle.glb',
-brezza: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Corset/glTF-Binary/Corset.glb',
+// // Maruti Suzuki
+// swift:  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/VC/glTF-Binary/VC.glb',
+// baleno: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Cube/glTF-Binary/Cube.glb',
+// ciaz:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/WaterBottle/glTF-Binary/WaterBottle.glb',
+// brezza: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Corset/glTF-Binary/Corset.glb',
 
-// Toyota
-innova:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/SciFiHelmet/glTF-Binary/SciFiHelmet.glb',
-fortuner: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Suzanne/glTF-Binary/Suzanne.glb',
+// // Toyota
+// innova:   'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/SciFiHelmet/glTF-Binary/SciFiHelmet.glb',
+// fortuner: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Suzanne/glTF-Binary/Suzanne.glb',
 
-// Audi
-audi_a4: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Chair/glTF-Binary/Chair.glb',
-audi_q7: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb',
+// // Audi
+// audi_a4: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Chair/glTF-Binary/Chair.glb',
+// audi_q7: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF-Binary/CesiumMilkTruck.glb',
 
-// Mercedes-Benz
-merc_cclass: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb',
-merc_gla:    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/MechArm/glTF-Binary/MechArm.glb',
+// // Mercedes-Benz
+// merc_cclass: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/AntiqueCamera/glTF-Binary/AntiqueCamera.glb',
+// merc_gla:    'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/MechArm/glTF-Binary/MechArm.glb',
 
-// Tesla
-tesla_model3: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Car/glTF-Binary/Car.glb',
-tesla_modelx: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Stormtrooper/glTF-Binary/Stormtrooper.glb'
-};
+// // Tesla
+// tesla_model3: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Car/glTF-Binary/Car.glb',
+// tesla_modelx: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Stormtrooper/glTF-Binary/Stormtrooper.glb'
+// };
 
 // Sketchfab UIDs per Hyundai model (IDs kept separate)
 const SKETCHFAB_UIDS = {
@@ -48,7 +48,19 @@ alcazar:'b59e0a6a958841088950cad4ff39e338',
 kona:   '26c27a6e061d4776b750e483b933df79',
 elantra:'4ba1b1b0eb844e318cc708ada1f2f51f',
 aura:   '064ab4fa32104628890b4b130c4db143',
-santro: 'd43347a799a84674a7d1543e60732298'
+santro: 'd43347a799a84674a7d1543e60732298',
+swift:  '218c3c0c6afd4d0eb343bd50d8868fd0',
+baleno: '438c1b0c1a4e4732aa1a3cbb505d19e5',
+ciaz:   'aa0d768ba98b4438b20b60267673df36',
+brezza: '1a5cbddc8acb457e9d896d7345fd07d8',
+innova:   'c8e1bbc9292b4e198dba839c32f02fa9',
+fortuner: '7c6a3dc9a04f45658d1289cfd20accd7',
+audi_a4: 'e8f318eeaeca43669b9b341fd446698d',
+audi_q7: 'fb78f278a774418ebb3cc53a995adddc',
+merc_cclass: '27d0ec784ceb4c80a03cc17ebea8acb4',
+merc_gla:    'ab7b5df3ba634f38a14effde3d542466',
+tesla_model3: '632435162090408c85d39808896601c9',
+tesla_modelx: '5c08f723bfc94a98b7d7918e3e4ff1dc'
 };
 
 // ===== ENGINE 3D ASSETS (IDs kept separate for each engine size) =====
@@ -98,6 +110,7 @@ const skfbFrame = document.getElementById('skfb-frame');
 
 let skfbClient = null;
 let skfbApi = null;
+let skfbDefaultCamera = null;
 
 const modelSelect = document.getElementById('modelSelect');
 const wheelSelect = document.getElementById('wheelSelect');
@@ -140,7 +153,9 @@ function useSketchfabForCurrentModel(){
 // Only Hyundai models use Sketchfab car viewer for now
 return [
     'creta','i20','verna','venue','tucson',
-    'alcazar','kona','elantra','aura','santro'
+    'alcazar','kona','elantra','aura','santro','swift',
+    'baleno','ciaz','brezza','innova','fortuner','audi_a4',
+    'audi_q7','merc_cclass','merc_gla','tesla_model3','tesla_modelx'
 ].includes(state.model);
 }
 
@@ -149,26 +164,39 @@ return ['tesla_model3','tesla_modelx'].includes(state.model);
 }
 
 function initSketchfabForModel(modelKey){
-const uid = SKETCHFAB_UIDS[modelKey];
-if(!uid || !skfbFrame || typeof Sketchfab === 'undefined') return;
+  const uid = SKETCHFAB_UIDS[modelKey];
+  if(!uid || !skfbFrame || typeof Sketchfab === 'undefined') return;
 
-skfbApi = null;
-skfbClient = new Sketchfab(skfbFrame);
-skfbClient.init(uid, {
+  skfbApi = null;
+  skfbDefaultCamera = null; // reset when switching models
+  skfbClient = new Sketchfab(skfbFrame);
+
+  skfbClient.init(uid, {
     autostart: 1,
     autospin: 0.2,
     success: function(api){
-    skfbApi = api;
-    api.start();
-    api.addEventListener('viewerready', function(){
+      skfbApi = api;
+      api.start();
+      api.addEventListener('viewerready', function(){
         console.log('Sketchfab viewer ready for', modelKey);
-    });
+
+        // capture initial camera so we can reset later
+        api.getCameraLookAt(function(err, camera){
+          if (err) {
+            console.warn('Could not get default camera', err);
+            return;
+          }
+          // camera = { position: [x,y,z], target: [x,y,z] }
+          skfbDefaultCamera = camera;
+        });
+      });
     },
     error: function(){
-    console.error('Sketchfab viewer error for', modelKey);
+      console.error('Sketchfab viewer error for', modelKey);
     }
-});
+  });
 }
+
 
 // navigation
 function goTo(n){
@@ -313,12 +341,45 @@ if (useSketchfabForCurrentModel()) {
 });
 
 document.getElementById('resetCam').addEventListener('click', ()=>{
-if (useSketchfabForCurrentModel()) {
-    alert('Reset camera is controlled by the Sketchfab viewer for this model.');
+
+  // --- Sketchfab case ---
+  if (useSketchfabForCurrentModel()) {
+    if (!skfbApi) {
+      alert('3D viewer is still loading. Please try again in a moment.');
+      return;
+    }
+
+    // If we have a stored default camera, go back to it
+    if (skfbDefaultCamera) {
+      skfbApi.setCameraLookAt(
+        skfbDefaultCamera.position,
+        skfbDefaultCamera.target,
+        1.0, // duration in seconds
+        function(err){
+          if (err) console.error('Error resetting Sketchfab camera', err);
+        }
+      );
+    } else if (typeof skfbApi.recenterCamera === 'function') {
+      // Fallback if we didn’t capture a default pose
+      skfbApi.recenterCamera(function(err){
+        if (err) console.error('Error recentering Sketchfab camera', err);
+      });
+    }
+
     return;
-}
-try{ carViewer.cameraOrbit = '0deg 75deg 2.5m'; }catch(e){}
+  }
+
+  // --- <model-viewer> case ---
+  try {
+    // Reset orbit, target & FOV to your preferred defaults
+    carViewer.cameraOrbit   = '0deg 75deg 2.5m';
+    carViewer.cameraTarget  = '0m 0m 0m';
+    carViewer.fieldOfView   = '45deg';
+  } catch (e) {
+    console.error('Reset camera failed for model-viewer', e);
+  }
 });
+
 
 // pause auto-rotate while interacting (only for model-viewer)
 if (carViewer) {
