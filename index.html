@@ -28,7 +28,7 @@
     <section id="page2" class="page card" aria-live="polite">
       <h2>Car Customizer-3D Model</h2>
 
-      <!-- Viewer container: model-viewer for most models, Sketchfab for Hyundai models -->
+      <!-- Viewer container: model-viewer for most models, Sketchfab for many models -->
       <div id="viewerContainer">
         <model-viewer id="carViewer"
           src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Buggy/glTF-Binary/Buggy.glb"
@@ -141,25 +141,6 @@
               <option value="matte" data-extra="20000">Matte (+₹20,000)</option>
             </select>
           </div>
-
-          <div style="margin-top:12px">
-            <label>Speaker System</label>
-            <select id="speakerSelect">
-              <option value="standard" data-extra="0">Standard (4 speakers)</option>
-              <option value="6sp" data-extra="20000">6 Speakers (+₹20,000)</option>
-              <option value="8sp_sub" data-extra="40000">8 Speakers + Subwoofer (+₹40,000)</option>
-              <option value="premium_bose" data-extra="60000">Bose Premium (+₹60,000)</option>
-            </select>
-          </div>
-
-          <div style="margin-top:12px">
-            <label>Gearbox</label>
-            <select id="gearboxSelect">
-              <option value="manual" data-extra="0">Manual</option>
-              <option value="auto" data-extra="80000">Automatic (+₹80,000)</option>
-              <option value="dct" data-extra="100000">DCT (+₹1,00,000)</option>
-            </select>
-          </div>
         </div>
 
         <div class="card">
@@ -185,130 +166,209 @@
     </section>
 
     <!-- PAGE 3: Components -->
-    <section id="page3" class="page card">
-      <h2>Components Customizer</h2>
-      <p>Pick engine / battery, interior, suspension and brakes.</p>
+<section id="page3" class="page card">
+  <h2>Components Customizer</h2>
+  <p>Pick engine / battery, interior, suspension, brakes, speakers & gearbox.</p>
 
-      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="card">
-          <label>Engine / Battery</label>
-          <select id="engineSelect" style="color: black"></select>
+  <!-- Engine + Interior -->
+  <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="card">
+      <label>Engine / Battery</label>
+      <select id="engineSelect" style="color: black"></select>
 
-          <!-- 3D engine/battery viewer -->
-          <div id="engine3dWrap" class="engine-3d-wrapper">
-            <iframe
-              id="engine3dFrame"
-              title="Engine / Battery 3D"
-              frameborder="0"
-              allowfullscreen
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              allow="autoplay; fullscreen; xr-spatial-tracking"
-              xr-spatial-tracking
-              execution-while-out-of-viewport
-              execution-while-not-rendered
-              web-share
-              src="">
-            </iframe>
-          </div>
-
-          <!-- fallback image (currently hidden) -->
-          <img id="engineImg" src="https://source.unsplash.com/600x360/?car-engine" alt="engine" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
-        </div>
-        <div class="card">
-          <label>Interior</label>
-          <select id="interiorSelect">
-            <option value="Standard" data-extra="0">Standard</option>
-            <option value="Luxury" data-extra="80000">Luxury (+₹80,000)</option>
-            <option value="Sport" data-extra="100000">Sport (+₹1,00,000)</option>
-          </select>
-
-          <!-- 3D Interior viewer -->
-          <div id="interior3dWrap" class="engine-3d-wrapper">
-            <iframe
-              id="interior3dFrame"
-              title="Interior 3D"
-              frameborder="0"
-              allowfullscreen
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              allow="autoplay; fullscreen; xr-spatial-tracking"
-              xr-spatial-tracking
-              execution-while-out-of-viewport
-              execution-while-not-rendered
-              web-share
-              src="">
-            </iframe>
-          </div>
-
-          <img id="interiorImg" src="https://source.unsplash.com/600x360/?car-interior" alt="interior" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
-        </div>
+      <!-- 3D engine/battery viewer -->
+      <div id="engine3dWrap" class="engine-3d-wrapper">
+        <iframe
+          id="engine3dFrame"
+          title="Engine / Battery 3D"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="">
+        </iframe>
       </div>
 
-      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="card">
-          <label>Suspension</label>
-          <select id="suspensionSelect">
-            <option value="Standard" data-extra="0">Standard</option>
-            <option value="Comfort" data-extra="40000">Comfort (+₹40,000)</option>
-            <option value="Sport" data-extra="70000">Sport (+₹70,000)</option>
-          </select>
+      <img id="engineImg"
+           src="https://source.unsplash.com/600x360/?car-engine"
+           alt="engine"
+           style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:140px;display:none">
+    </div>
 
-          <!-- 3D Suspension viewer -->
-          <div id="suspension3dWrap" class="engine-3d-wrapper">
-            <iframe
-              id="suspension3dFrame"
-              title="Suspension 3D"
-              frameborder="0"
-              allowfullscreen
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              allow="autoplay; fullscreen; xr-spatial-tracking"
-              xr-spatial-tracking
-              execution-while-out-of-viewport
-              execution-while-not-rendered
-              web-share
-              src="">
-            </iframe>
-          </div>
+    <div class="card">
+      <label>Interior</label>
+      <select id="interiorSelect">
+        <option value="Standard" data-extra="0">Standard</option>
+        <option value="Luxury" data-extra="80000">Luxury (+₹80,000)</option>
+        <option value="Sport" data-extra="100000">Sport (+₹1,00,000)</option>
+      </select>
 
-          <img id="suspensionImg" src="https://source.unsplash.com/600x360/?car-suspension" alt="suspension" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
-        </div>
-        <div class="card">
-          <label>Brakes</label>
-          <select id="brakesSelect">
-            <option value="Standard" data-extra="0">Standard</option>
-            <option value="ABS" data-extra="35000">ABS (+₹35,000)</option>
-            <option value="Performance" data-extra="90000">Performance (+₹90,000)</option>
-          </select>
-
-          <!-- 3D Brakes viewer -->
-          <div id="brakes3dWrap" class="engine-3d-wrapper">
-            <iframe
-              id="brakes3dFrame"
-              title="Brakes 3D"
-              frameborder="0"
-              allowfullscreen
-              mozallowfullscreen="true"
-              webkitallowfullscreen="true"
-              allow="autoplay; fullscreen; xr-spatial-tracking"
-              xr-spatial-tracking
-              execution-while-out-of-viewport
-              execution-while-not-rendered
-              web-share
-              src="">
-            </iframe>
-          </div>
-
-          <img id="brakesImg" src="https://source.unsplash.com/600x360/?car-brake" alt="brakes" style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:120px;display:none">
-        </div>
+      <div id="interior3dWrap" class="engine-3d-wrapper">
+        <iframe
+          id="interior3dFrame"
+          title="Interior 3D"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="">
+        </iframe>
       </div>
 
-      <div style="margin-top:14px;display:flex;gap:8px">
-        <button class="btn" onclick="goTo(4)">Next: Summary</button>
-        <button class="btn" onclick="goTo(2)">Back: Car</button>
+      <img id="interiorImg"
+           src="https://source.unsplash.com/600x360/?car-interior"
+           alt="interior"
+           style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:140px;display:none">
+    </div>
+  </div>
+
+  <!-- Suspension + Brakes -->
+  <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="card">
+      <label>Suspension</label>
+      <select id="suspensionSelect">
+        <option value="Standard" data-extra="0">Standard</option>
+        <option value="Comfort" data-extra="40000">Comfort (+₹40,000)</option>
+        <option value="Sport" data-extra="70000">Sport (+₹70,000)</option>
+      </select>
+
+      <div id="suspension3dWrap" class="engine-3d-wrapper">
+        <iframe
+          id="suspension3dFrame"
+          title="Suspension 3D"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="">
+        </iframe>
       </div>
-    </section>
+
+      <img id="suspensionImg"
+           src="https://source.unsplash.com/600x360/?car-suspension"
+           alt="suspension"
+           style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:140px;display:none">
+    </div>
+
+    <div class="card">
+      <label>Brakes</label>
+      <select id="brakesSelect">
+        <option value="Standard" data-extra="0">Standard</option>
+        <option value="ABS" data-extra="35000">ABS (+₹35,000)</option>
+        <option value="Performance" data-extra="90000">Performance (+₹90,000)</option>
+      </select>
+
+      <div id="brakes3dWrap" class="engine-3d-wrapper">
+        <iframe
+          id="brakes3dFrame"
+          title="Brakes 3D"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="">
+        </iframe>
+      </div>
+
+      <img id="brakesImg"
+           src="https://source.unsplash.com/600x360/?car-brake"
+           alt="brakes"
+           style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:140px;display:none">
+    </div>
+  </div>
+
+  <!-- Speakers + Gearbox (dynamic 3D using your JS) -->
+  <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="card">
+      <label>Speaker System</label>
+      <select id="speakerSelect">
+        <option value="standard" data-extra="0">Standard (4 speakers)</option>
+        <option value="6sp" data-extra="20000">6 Speakers (+₹20,000)</option>
+        <option value="8sp_sub" data-extra="40000">8 Speakers + Subwoofer (+₹40,000)</option>
+        <option value="premium_bose" data-extra="60000">Bose Premium (+₹60,000)</option>
+      </select>
+
+      <div id="speaker3dWrap" class="engine-3d-wrapper">
+        <iframe
+          id="speaker3dFrame"
+          title="Speaker System 3D"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="">
+        </iframe>
+      </div>
+
+      <img id="speakerImg"
+           src="https://source.unsplash.com/600x360/?car-speaker"
+           alt="speaker"
+           style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:140px;display:none">
+    </div>
+
+    <div class="card">
+      <label>Gearbox</label>
+      <select id="gearboxSelect">
+        <option value="manual" data-extra="0">Manual</option>
+        <option value="auto" data-extra="80000">Automatic (+₹80,000)</option>
+        <option value="dct" data-extra="100000">DCT (+₹1,00,000)</option>
+      </select>
+
+      <div id="gearbox3dWrap" class="engine-3d-wrapper">
+        <iframe
+          id="gearbox3dFrame"
+          title="Gearbox 3D"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          src="">
+        </iframe>
+      </div>
+
+      <img id="gearboxImg"
+           src="https://source.unsplash.com/600x360/?gearbox"
+           alt="gearbox"
+           style="width:100%;margin-top:8px;border-radius:8px;object-fit:cover;height:140px;display:none">
+    </div>
+  </div>
+
+  <div style="margin-top:14px;display:flex;gap:8px">
+    <button class="btn" onclick="goTo(4)">Next: Summary</button>
+    <button class="btn" onclick="goTo(2)">Back: Car</button>
+  </div>
+</section>
+
 
     <!-- PAGE 4 -->
     <section id="page4" class="page card">
@@ -341,6 +401,7 @@
       <button class="btn" onclick="backToHome()">Back to Home</button>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

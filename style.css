@@ -226,15 +226,13 @@ footer{
     opacity:1;
 }
 
-/* Tiny pointer "glow trail" for high-FPS feel */
-/* Cursor water-wave / ripple trail */
-/* Cursor ocean-lapping wave ripple */
+/* Pointer trail */
 .trail-dot {
     pointer-events: none;
     position: fixed;
     width:36px;
     height:22px;
-    border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%; /* organic wave ellipse */
+    border-radius: 40% 60% 55% 45% / 50% 50% 60% 40%;
     background: radial-gradient(
     ellipse at center,
     rgba(191,219,254,0.45) 0%,
@@ -255,19 +253,17 @@ footer{
     }
     35% {
     opacity:0.65;
-    transform: translate3d(-52%,-48%,0) scale(0.82); /* wave reaches shore */
+    transform: translate3d(-52%,-48%,0) scale(0.82);
     }
     70% {
     opacity:0.32;
-    transform: translate3d(-48%,-53%,0) scale(1.25); /* wave pulls back */
+    transform: translate3d(-48%,-53%,0) scale(1.25);
     }
     100% {
     opacity:0;
-    transform: translate3d(-50%,-50%,0) scale(1.6,1.2); /* uneven stretch like retreating tide */
+    transform: translate3d(-50%,-50%,0) scale(1.6,1.2);
     }
 }
-
-
 
 /* Sketchfab wrapper to match model-viewer size */
 .sketchfab-embed-wrapper{
@@ -283,17 +279,20 @@ footer{
     border:0;
 }
 
-/* 3D component wrapper (engine, interior, suspension, brakes) */
+/* 3D component wrapper (engine, interior, suspension, brakes, speakers, gearbox) */
 .engine-3d-wrapper{
     width:100%;
-    height:220px;
-    border-radius:8px;
+    height:280px; /* or whatever height you like */
+    border-radius:12px;
     overflow:hidden;
-    margin-top:8px;
-    background:linear-gradient(180deg,#020617,#0b1226);
+    margin-top:10px;
+    background:linear-gradient(180deg,#020617,#020617);
+    box-shadow:0 14px 40px rgba(15,23,42,.85);
 }
 .engine-3d-wrapper iframe{
     width:100%;
     height:100%;
     border:0;
 }
+
+
